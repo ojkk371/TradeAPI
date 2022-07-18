@@ -1,0 +1,36 @@
+version: "3"
+services:
+  trade_api:
+    container_name: trade_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - USER_NAME=$USER
+        - USER_ID=$USER_ID
+    shm_size: "8gb"
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    privileged: true
+    volumes:
+      - ../:$HOME/Projects
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    environment:
+      - DISPLAY=$DISPLAY
+    working_dir: $HOME/Projects
+    network_mode: "host"
+    tty: true
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    env_file:
+      - .env/mysqlenv
+    volumes:
+      - $HOME/mysql:/var/lib/mysql
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    ports:
+      - 3306:3306
+    privileged: true
+    tty: true

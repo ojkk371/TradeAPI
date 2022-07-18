@@ -1,0 +1,13 @@
+fastapi
+pydantic
+pydantic[email]
+PyMySQL
+SQLAlchemy
+uvicorn[standard]
+
+# jwt auth
+pyjwt
+bcrypt
+
+# test
+pytest
