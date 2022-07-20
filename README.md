@@ -7,12 +7,14 @@ USER_ID=$UID docker-compose up -d
 
 # trade_api
 docker exec -it trade_api bash
-
-# mysql
-docker exec -it mysql bash
 ```
 #
 ### MySQL setting
+```bash
+# mysql
+docker exec -it mysql bash
+```
+
 ```bash
 # mysql login
 mysql -u root -p
