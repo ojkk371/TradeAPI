@@ -47,6 +47,15 @@ mysql -u root -p
 #
 ### Configuration (trade_api)
 Enter your Binance API Key in `app/common/consts.py`
+```bash
+WEBHOOK_PASSPHRASE = "boraisfantastic"
+JWT_SECRET = "ABCD1234!"
+JWT_ALGORITHM = "HS256"
+EXCEPT_PATH_LIST = ["/", "/openapi.json"]
+EXCEPT_PATH_REGEX = "^(/docs|/redoc|/auth)"
+API_KEY = "lpJnCbctrhqVaboaFD4fXmnu****************************************"
+SECRET_KEY = "dkIEsoRbRzeLlvugfumuD*******************************************"
+```
 #
 ### trade module install
 ```bash
