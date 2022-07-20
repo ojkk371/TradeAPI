@@ -68,7 +68,7 @@ python -m pip install -e .
 ### Run API server
 ```bash
 cd app/
-sudo python server.py
+sudo python main.py
 ```
 #
 ### Connect API-docs
