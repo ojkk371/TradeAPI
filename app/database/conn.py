@@ -49,7 +49,7 @@ class SQLAlchemy:
             pool_pre_ping=True,
         )
         db_url = self._engine.url
-        self._table_name = str(db_url).split("?")[0].split("3308/")[1]
+        self._table_name = str(db_url).split(f"{db_url.port}")[1].split('?')[0].split('/')[1]
         schema_name = db_url.database
         if not _database_exist(self._engine, schema_name):
             _create_database(self._engine, schema_name)
