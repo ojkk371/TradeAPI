@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import query, sessionmaker
 from dive3m.utils.logger import Logger
 
 
@@ -48,7 +48,9 @@ class SQLAlchemy:
             pool_recycle=pool_recycle,
             pool_pre_ping=True,
         )
-        schema_name = database_url.database
+        db_url = self._engine.url
+        self._table_name = str(db_url).split("?")[0].split("3308/")[1]
+        schema_name = db_url.database
         if not _database_exist(self._engine, schema_name):
             _create_database(self._engine, schema_name)
         if is_testing:
@@ -103,6 +105,14 @@ class SQLAlchemy:
     @property
     def engine(self):
         return self._engine
+
+    @property
+    def table_exist(self):
+        q = f"SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '{self._table_name}'"
+        with self._engine.connect() as conn:
+            result_proxy = conn.execute(q)
+            result = result_proxy.scalar()
+            return bool(result)
 
 
 db = SQLAlchemy()
