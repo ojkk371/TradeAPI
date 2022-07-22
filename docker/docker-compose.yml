@@ -30,5 +30,10 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
     ports:
       - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: trade_api
+      MYSQL_USER: travis
+      MYSQL_PASSWORD: 1234
     privileged: true
     tty: true
