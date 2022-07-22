@@ -13,7 +13,7 @@ class Config(BaseModel):
     BASE_DIR = base_dir
     DB_POOL_RECYCLE: int = 900
     DB_ECHO: bool = True
-    DB_URL: str = "mysql+pymysql://travis@localhost/dive3m_api?charset=utf8mb4"
+    DB_URL: str = "mysql+pymysql://travis:1234@localhost:3306/trade_api?charset=utf8mb4"
 
 
 class LocalConfig(Config):
@@ -27,7 +27,7 @@ class ProdConfig(Config):
 
 
 class TestConfig(Config):
-    DB_URL: str = "mysql+pymysql://travis@localhost/dive3m_test?charset=utf8mb4"
+    DB_URL: str = "mysql+pymysql://travis:1234@localhost:3306/trade_api?charset=utf8mb4"
     TRUSTED_HOSTS = ["*"]
     ALLOW_SITE = ["*"]
     TEST_MODE = bool = True
@@ -38,6 +38,6 @@ def conf():
     Load Config
     :return: dict
     """
-    config = dict(prod=ProdConfig, local=LocalConfig, test=TestConfig)
+    config = dict(prod=ProdConfig(), local=LocalConfig(), test=TestConfig())
     conf = config.get(environ.get("API_ENV", "local"))
     return conf.dict()
