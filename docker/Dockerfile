@@ -27,6 +27,7 @@ RUN sed -i "s/archive.ubuntu/mirror.kakao/g" /etc/apt/sources.list \
 
 # pip-packages
 RUN ln -sf /usr/bin/python3.9 /usr/bin/python \
+ && ln -sf /usr/local/bin/pip /usr/bin/pip \
  && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py \
  && python3.9 get-pip.py \
  && python3.9 -m pip install --upgrade pip \
