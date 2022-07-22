@@ -28,7 +28,7 @@ API_KEY = "lpJnCbctrhqVaboaFD4fXmnu****************************************"
 SECRET_KEY = "dkIEsoRbRzeLlvugfumuD*******************************************"
 ```
 #
-### 3. trade module install
+### 3. dive3m module install
 ```bash
 docker exec -it trade_api bash
 python -m pip install -e .
